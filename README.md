@@ -30,27 +30,29 @@ Authentication
     - prisma console
     npm run deploy --- prisma deploy --env-file variables.env
  
-        Prsima Graphql Actions
-          - mutation {
-          createUser(data: {
-              name: " Johan Gace"
-              email: "johangace@something.com"
-              image:"asjfasjhdskh"
-              password:"asjhfsj"
-          }){
-              name
-              email
-              password image
-          }
-          }
-          - query {
-          users(where:{
-              name_contains: "johan"
-          }){
-              id
-              name
-          }
-          }
+     - Prsima Graphql  Sample Actions
+        
+         1. mutation {
+         createUser(data: {
+             name: " Johan Gace"
+             email: "johangace@something.com"
+             image:"asjfasjhdskh"
+             password:"asjhfsj"
+         }){
+             name
+             email
+             password image
+         }
+         }
+         
+         2. query {
+           users(where:{
+               name_contains: "johan"
+           }){
+               id
+               name
+           }
+           }
 
 
 - GraphQL Yoga  
@@ -73,7 +75,7 @@ Authentication
 
 
 
-Steps to add  a piece of data to backend:
+## Steps to add  a piece of data to backend:
 
 1.datamodel.Graphql  -- schema for prisma
    create type
@@ -84,7 +86,7 @@ Steps to add  a piece of data to backend:
  createItem(title: String, description: String, price: Int, image: String, largeImage: String): Item!
 
 5.(yoga server connects with the prisma (prisma.graphql) db)
-        Mutation : 
+     - Mutation : 
        async createItem(parent, args, context, info ){
         const item = context.db.mutation.createUser( data :{
             ...args
