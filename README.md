@@ -1,5 +1,4 @@
 # stagewood
-# stagewood
 Next.js, Prisma GraphQL, Apollo Server, Yoga Graphql
 
 Authentication 
