@@ -1,0 +1,127 @@
+Prisma:
+   Provides a set of GraphQql CRUD apis for MySql Database. 
+   Schema definition
+   Self hosted
+   Data relationships
+   Querried from Yoga Server
+
+  Interact with prisma: 
+    -prisma login
+    - prisma init
+    - prisma console
+    npm run deploy --- prisma deploy --env-file variables.env
+
+ 
+  Prsima Graphql Actions
+    - mutation {
+    createUser(data: {
+        name: " Johan Gace"
+        email: "johangace@something.com"
+
+    }){
+        name
+        email
+    }
+    }
+    - query {
+    users(where:{
+        name_contains: "johan"
+    }){
+        id
+        name
+    }
+    }
+
+
+GraphQL Yoga  
+  An Exprpress Graphql Server for : 
+    Implement Query and mutation resolvers
+    custom Server Side logic
+    Performing JWT authentication 
+    Check Permissions   
+
+
+cookies- JWT.IO
+
+Apollo Client
+  Data management
+    Fetch Queries
+    Perform the mutations 
+    Cache Graphql data 
+    Loading Ui states
+
+
+Resolvers- Mutations and querys
+    //temporary; local storage
+
+    type Dog {
+    name: String!
+}
+    type Mutation {
+        createDog(name: String!): Dog
+    }
+    type Query {
+        dogs: [Dog]!
+        # cant return null for any item
+    } 
+
+
+    const mutations = {
+    createDog(parent, args, context, info) {
+        global.dogs = global.dogs || []
+        const newDog = {
+        name: args.name,
+        }
+        global.dogs.push(newDog)
+        return newDog
+    },
+    }
+
+    const Query = {
+    dogs(parent, args, context, info) {
+        global.dogs = global.dogs || []
+        return global.dogs
+    },
+    }
+
+Steps to add  a piece of data to backend:
+
+1.datamodel.Graphql  -- schema for prisma
+   create type
+2. npm run deploy --prisma
+3.prisma.graphql : all methods to datamodel 
+
+4.schema.graphql - public facing api
+ createItem(title: String, description: String, price: Int, image: String, largeImage: String): Item!
+
+5.(yoga server connects with the prisma (prisma.graphql) db)
+        Mutation : 
+       async createItem(parent, args, context, info ){
+        const item = context.db.mutation.createDog(        data :{
+            ...args
+        }, info}}
+        )
+        return item
+        }
+
+
+signup playground
+
+mutation createUser{
+  signup(
+    email: "gace.johan3@gmail.com",
+    name: "Johan Gace",
+    password: "dogs123"
+  )  {
+    name
+    email
+    password
+  }
+}
+
+
+
+deploy://
+1.Prisma server
+2.yoga server
+3.react pp

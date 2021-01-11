@@ -1,0 +1,15 @@
+
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  image: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+}
+
+
+
+
+
